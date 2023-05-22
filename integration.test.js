@@ -12,4 +12,13 @@ describe('Account', () => {
     account.deposit(100);
     expect(account.transactions.length).toEqual(1);
   });
+
+  it('the transactions array should have four transactions when depositing 300, 200, 100 and 50', () => {
+    const account = new Account(0);
+    account.deposit(300);
+    account.deposit(200);
+    account.deposit(100);
+    account.deposit(50);
+    expect(account.transactions.length).toEqual(4);
+  });
 });
