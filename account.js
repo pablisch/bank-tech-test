@@ -9,6 +9,7 @@ class Account {
   }
 
   withdraw(amount) {
+    if (amount < 0) throw new Error('Cannot withdraw negative amount');
     this.balance -= amount;
   }
 }
