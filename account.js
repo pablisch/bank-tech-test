@@ -4,6 +4,7 @@ class Account {
   }
 
   deposit(amount) {
+    if (amount < 0) throw new Error('Cannot deposit negative amount');
     this.balance += amount;
   }
 

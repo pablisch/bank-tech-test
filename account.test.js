@@ -27,7 +27,11 @@ describe('Account', () => {
       account.deposit(100);
       account.deposit(50);
       expect(account.balance).toEqual(150);
-    } );  
+    }); 
+    
+    it('should throw an error when depositing a negative amount', () => {
+      expect(() => { account.deposit(-100); }).toThrowError('Cannot deposit negative amount');
+    } );
   });
   
   describe('withdraw', () => {
