@@ -6,22 +6,32 @@ This is a tech test for a bank account. It is a command line application that al
 
 ## Installation
 
-<!-- 1. Clone this repository
+1. Clone this repository
 2. Run `npm install` to install dependencies
 3. Run `jest` to run tests
-4. Run `node` to open the node REPL
-5. Run `.load ./src/account.js` to load the account class
-6. Run `.load ./src/transaction.js` to load the transaction class
-7. Run `.load ./src/statement.js` to load the statement class
-8. Run `let account = new Account()` to create a new account
-9. Run `account.deposit(1000)` to make a deposit
-10. Run `account.withdraw(500)` to make a withdrawal
-11. Run `account.printStatement()` to print a statement
-12. Run `account.balance` to check the balance
-13. Run `account.transactions` to check the transactions
-14. Run `account.statement` to check the statement
-15. Run `account.statement.print()` to print the statement -->
-    
+
+## Example usage in Node (step by step)
+
+1. Run `node` to open the node REPL
+2. Run `const Account = require('./account.js')` to require the Account class
+3. Run `const account = new Account(0)` to create a new account with a balance of 0
+4. Run `account.deposit(1000)` to deposit £1000
+5. Run `account.deposit(2000)` to deposit £2000
+6. Run `account.withdraw(500)` to withdraw £500
+7. Run `account.printStatement()` to print a statement of your transactions
+8. Run `account.balance` to check your balance
+
+## Example usage in Node (all at once)
+
+Copy this code as a block and paste it into the node REPL `node` to run all the commands at once:
+```
+const Account = require('./account.js')
+const account = new Account(0)
+account.deposit(1000)
+account.deposit(2000)
+account.withdraw(500)
+account.printStatement()
+```
 
 ## Specification
 
@@ -61,36 +71,49 @@ date || credit || debit || balance
 > So that I can monitor my money and spending,
 > I would like to be able to [print] a [statement] of my [transactions].
 
+### Design visualisation
+
+User interaction with the application:
+[![Bank Tech Test User Interaction Design]](images/bank-tech-test-user-interaction.png)
+
 
 ### Classes
 
-* Account
-* Transaction
-* Statement
+* Account(balance - float) - manages transactions and balance
+* Transaction(credit - float, debit - float, balance - float) - stores transaction details with a date
 
 ### Methods
 
 #### Account
 
-* deposit(amount) 
-* withdraw(amount)
+* new(balance - float)
+* deposit(amount - float) 
+* withdraw(amount - float)
 * printStatement()
 
 #### Transaction
 
-* new()
-* date()
-* credit()
-* debit()
-* balance()
+* new(credit - float, debit - float, balance - float, ADDS date - date)
 
-#### Statement
+### Edge Cases
 
-* new()
-* print()
+* User cannot withdraw or deposit a negative amount
+* User cannot withdraw or deposit a non-number
+* User cannot withdraw or deposit a number with more than 2 decimal places
+* User cannot withdraw or deposit a number with more than 500,000
+* User cannot withdraw or deposit a number with less than 1 digit before the decimal point
 
+## Example tests
 
-
-
-
+```
+> account = new Account(0)
+> account.deposit(1000)
+> account.deposit(2000)
+> account.withdraw(500)
+> account.printStatement()
+date || credit || debit || balance
+14/01/2023 || || 500.00 || 2500.00
+13/01/2023 || 2000.00 || || 3000.00
+10/01/2023 || 1000.00 || || 1000.00
+```
 
