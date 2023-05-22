@@ -102,7 +102,6 @@ Class diagram:
 * User cannot withdraw or deposit a non-number
 * User cannot withdraw or deposit a number with more than 2 decimal places
 * User cannot withdraw or deposit a number with more than 500,000
-* User cannot withdraw or deposit a number with less than 1 digit before the decimal point
 
 ## Example tests
 

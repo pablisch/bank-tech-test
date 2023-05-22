@@ -34,6 +34,11 @@ describe('Account', () => {
       expect(account.balance).toEqual(99.99);
     }); 
     
+    it('should increase the balance by float amount deposited (.99)', () => {  
+      account.deposit(.99);
+      expect(account.balance).toEqual(0.99);
+    }); 
+    
     it('should throw an error when depositing a negative amount', () => {
       expect(() => { account.deposit(-100); }).toThrowError('Cannot deposit negative amount');
     });
@@ -44,6 +49,10 @@ describe('Account', () => {
 
     it('should throw an error when depositing an amount with more than 2 decimal places', () => {
       expect(() => { account.deposit(99.999); }).toThrowError('Cannot deposit amount with more than 2 decimal places');
+    });
+
+    it('should throw an error when depositing an amount greater than 500000', () => {
+      expect(() => { account.deposit(500001); }).toThrowError('Cannot deposit amount greater than 500000');
     });
   });
   
@@ -72,6 +81,12 @@ describe('Account', () => {
       account.withdraw(99.99);
       expect(account.balance).toEqual(900.01);
     });
+
+    it('should decrease the balance by float amount withdrawn (.99)', () => { 
+      account.deposit(1000);
+      account.withdraw(.99);
+      expect(account.balance).toEqual(999.01);
+    });
     
     it('should throw an error when withdrawing a negative amount', () => {
       expect(() => { account.withdraw(-100); }).toThrowError('Cannot withdraw negative amount');
@@ -83,6 +98,10 @@ describe('Account', () => {
 
     it('should throw an error when withdrawing an amount with more than 2 decimal places', () => {
       expect(() => { account.withdraw(99.999); }).toThrowError('Cannot withdraw amount with more than 2 decimal places');
+    });
+
+    it('should throw an error when withdrawing an amount greater than 500000', () => {
+      expect(() => { account.withdraw(500001); }).toThrowError('Cannot withdraw amount greater than 500000');
     });
   });
 });
