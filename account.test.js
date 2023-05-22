@@ -40,19 +40,19 @@ describe('Account', () => {
     }); 
     
     it('should throw an error when depositing a negative amount', () => {
-      expect(() => { account.deposit(-100); }).toThrowError('Cannot deposit negative amount');
+      expect(() => { account.deposit(-100); }).toThrowError('Transactions cannot have a negative amount');
     });
     
     it('should throw an error when depositing a non-number', () => {  
-      expect(() => { account.deposit('hello'); }).toThrowError('Cannot deposit non-number');
+      expect(() => { account.deposit('hello'); }).toThrowError('Transactions must be a number');
     });
 
     it('should throw an error when depositing an amount with more than 2 decimal places', () => {
-      expect(() => { account.deposit(99.999); }).toThrowError('Cannot deposit amount with more than 2 decimal places');
+      expect(() => { account.deposit(99.999); }).toThrowError('Transactions cannot have more than 2 decimal places');
     });
 
     it('should throw an error when depositing an amount greater than 500000', () => {
-      expect(() => { account.deposit(500001); }).toThrowError('Cannot deposit amount greater than 500000');
+      expect(() => { account.deposit(500001); }).toThrowError('Transactions cannot be greater than 500000');
     });
   });
   
