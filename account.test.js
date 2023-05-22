@@ -29,6 +29,11 @@ describe('Account', () => {
       expect(account.balance).toEqual(150);
     }); 
     
+    it('should increase the balance by float amount deposited (99.99)', () => {  
+      account.deposit(99.99);
+      expect(account.balance).toEqual(99.99);
+    }); 
+    
     it('should throw an error when depositing a negative amount', () => {
       expect(() => { account.deposit(-100); }).toThrowError('Cannot deposit negative amount');
     });
@@ -56,6 +61,12 @@ describe('Account', () => {
       account.withdraw(100);
       account.withdraw(50);
       expect(account.balance).toEqual(850);
+    });
+
+    it('should decrease the balance by float amount withdrawn (99.99)', () => {
+      account.deposit(1000);
+      account.withdraw(99.99);
+      expect(account.balance).toEqual(900.01);
     });
     
     it('should throw an error when withdrawing a negative amount', () => {
