@@ -41,6 +41,10 @@ describe('Account', () => {
     it('should throw an error when depositing a non-number', () => {  
       expect(() => { account.deposit('hello'); }).toThrowError('Cannot deposit non-number');
     });
+
+    it('should throw an error when depositing an amount with more than 2 decimal places', () => {
+      expect(() => { account.deposit(99.999); }).toThrowError('Cannot deposit amount with more than 2 decimal places');
+    });
   });
   
   describe('withdraw', () => {
