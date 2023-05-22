@@ -21,20 +21,33 @@ describe('Account', () => {
     it('should increase the balance by the amount deposited (50)', () => {
       account.deposit(50);
       expect(account.balance).toEqual(50);
-    } );
+    });
+    
+    it('should increase the balance by the amount deposited (100) and (50)', () => {  
+      account.deposit(100);
+      account.deposit(50);
+      expect(account.balance).toEqual(150);
+    } );  
   });
   
   describe('withdraw', () => {
     it('should decrease the balance by the amount withdrawn (100)', () => {
-      account.deposit(100);
+      account.deposit(1000);
       account.withdraw(100);
-      expect(account.balance).toEqual(0);
+      expect(account.balance).toEqual(900);
     });
 
     it('should decrease the balance by the amount withdrawn (50)', () => {
-      account.deposit(50);
+      account.deposit(1000);
       account.withdraw(50);
-      expect(account.balance).toEqual(0);
+      expect(account.balance).toEqual(950);
     });
+
+    it('should decrease the balance by the amount withdrawn (100) and (50)', () => {
+      account.deposit(1000);
+      account.withdraw(100);
+      account.withdraw(50);
+      expect(account.balance).toEqual(850);
+    } );
   } );
 });
