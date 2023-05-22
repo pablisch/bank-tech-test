@@ -7,4 +7,9 @@ describe('Account', () => {
     expect(account.transactions).toEqual([]);
   });
 
+  it('the transactions array should have one transaction when depositing 100', () => {
+    const account = new Account(0);
+    account.deposit(100);
+    expect(account.transactions.length).toEqual(1);
+  });
 });
