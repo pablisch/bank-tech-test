@@ -89,19 +89,19 @@ describe('Account', () => {
     });
     
     it('should throw an error when withdrawing a negative amount', () => {
-      expect(() => { account.withdraw(-100); }).toThrowError('Cannot withdraw negative amount');
+      expect(() => { account.withdraw(-100); }).toThrowError('Transactions cannot have a negative amount');
     });
 
     it('should throw an error when withdrawing a non-number', () => {
-      expect(() => { account.withdraw('hello'); }).toThrowError('Cannot withdraw non-number');
+      expect(() => { account.withdraw('hello'); }).toThrowError('Transactions must be a number');
     });
 
     it('should throw an error when withdrawing an amount with more than 2 decimal places', () => {
-      expect(() => { account.withdraw(99.999); }).toThrowError('Cannot withdraw amount with more than 2 decimal places');
+      expect(() => { account.withdraw(99.999); }).toThrowError('Transactions cannot have more than 2 decimal places');
     });
 
     it('should throw an error when withdrawing an amount greater than 500000', () => {
-      expect(() => { account.withdraw(500001); }).toThrowError('Cannot withdraw amount greater than 500000');
+      expect(() => { account.withdraw(500001); }).toThrowError('Transactions cannot be greater than 500000');
     });
   });
 });
