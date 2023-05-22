@@ -74,10 +74,11 @@ date || credit || debit || balance
 ### Design visualisation
 
 User interaction with the application:
-[![Bank Tech Test User Interaction Design]](images/bank-tech-test-user-interaction.png)
+[![Bank Tech Test User Interaction Design]](./images/bank-tech-test-user-interaction.png)
 
+Class diagram:
+[![Bank Tech Test Class Diagram]](./images/bank-tech-test-class-diagram.png)
 
-### Classes
 
 * Account(balance - float) - manages transactions and balance
 * Transaction(credit - float, debit - float, balance - float) - stores transaction details with a date
