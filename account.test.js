@@ -24,4 +24,17 @@ describe('Account', () => {
     } );
   });
   
+  describe('withdraw', () => {
+    it('should decrease the balance by the amount withdrawn (100)', () => {
+      account.deposit(100);
+      account.withdraw(100);
+      expect(account.balance).toEqual(0);
+    });
+
+    it('should decrease the balance by the amount withdrawn (50)', () => {
+      account.deposit(50);
+      account.withdraw(50);
+      expect(account.balance).toEqual(0);
+    });
+  } );
 });
