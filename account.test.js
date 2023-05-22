@@ -11,4 +11,12 @@ describe('Account', () => {
       expect(account.balance).toEqual(0);
     });
   });
+
+  describe('deposit', () => {
+    it('should increase the balance by the amount deposited', () => {
+      account.deposit(100);
+      expect(account.balance).toEqual(100);
+    });
+  });
+  
 });
