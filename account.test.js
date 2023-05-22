@@ -80,5 +80,9 @@ describe('Account', () => {
     it('should throw an error when withdrawing a non-number', () => {
       expect(() => { account.withdraw('hello'); }).toThrowError('Cannot withdraw non-number');
     });
+
+    it('should throw an error when withdrawing an amount with more than 2 decimal places', () => {
+      expect(() => { account.withdraw(99.999); }).toThrowError('Cannot withdraw amount with more than 2 decimal places');
+    });
   });
 });
