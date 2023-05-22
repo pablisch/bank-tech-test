@@ -1,11 +1,16 @@
+const Transaction = require('./transaction');
+
 class Account {
   constructor(balance) {
     this.balance = balance;
+    this.transactions = [];
   }
 
   deposit(amount) {
     this.validateAmount(amount);
     this.balance += amount;
+    const transaction = new Transaction(amount, 0, this.balance);
+    this.transactions.push(transaction);
   }
 
   withdraw(amount) {
