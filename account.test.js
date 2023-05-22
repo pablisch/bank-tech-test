@@ -62,6 +62,8 @@ describe('Account', () => {
       expect(() => { account.withdraw(-100); }).toThrowError('Cannot withdraw negative amount');
     });
 
-
+    it('should throw an error when withdrawing a non-number', () => {
+      expect(() => { account.withdraw('hello'); }).toThrowError('Cannot withdraw non-number');
+    });
   });
 });

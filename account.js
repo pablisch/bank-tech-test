@@ -12,6 +12,8 @@ class Account {
 
   withdraw(amount) {
     if (amount < 0) throw new Error('Cannot withdraw negative amount');
+    // if amount is not a number, throw an error
+    if (isNaN(amount)) throw new Error('Cannot withdraw non-number');
     this.balance -= amount;
   }
 }
