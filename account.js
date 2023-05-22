@@ -16,6 +16,8 @@ class Account {
   withdraw(amount) {
     this.validateAmount(amount);
     this.balance -= amount;
+    const transaction = new Transaction(0, amount, this.balance);
+    this.transactions.push(transaction);
   }
 
   // helper method for validating amount
