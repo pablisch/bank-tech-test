@@ -108,12 +108,23 @@ Class diagram:
 
 * constructor(credit - float, debit - float, balance - float, (constructor adds:) date - date)
 
+### Class and method design decisions
+
+I decided that the Account class would control the transactions and balance, while a separate Transaction class would store the details of each transaction. 
+I considered the possibility of a third Statment class, but decided against this as the statement is simply a list of transactions and I felt that the Account class could easily handle this given the scale of the project.
+
 ### Edge Cases
 
 * User cannot withdraw or deposit a negative amount
 * User cannot withdraw or deposit a non-number
 * User cannot withdraw or deposit a number with more than 2 decimal places
 * User cannot withdraw or deposit a number with more than 500,000
+
+I took the decision to set a transaction limit of 500,000 as an arbitrary number in consideration that above a certain amount, a bank would likely require some form of authorisation or security check. The limit could be changed by changing the value set in the `validateAmount` method in the `Account` class.
+
+I also considered restricting withdrawals where there were insufficient funds in the account, but decided against this as it is not a requirement of the tech test and users may also have an overdraft facility.
+
+I asked about a possible requirement to have a user account number or name, but was told that this was not a requirement of the tech test.
 
 ## Example integration tests
 
@@ -139,6 +150,15 @@ date || credit || debit || balance
 > account.balance
 2500
 ```
+
+## Testing
+
+I used Jest to test the application.
+* There are unit tests for the `Account` and `Transaction` classes and integration tests for the user stories.
+* The `Transaction` class is tested using a mock date to ensure that the date is correct when the transaction is created.
+* The integration tests also use the same mock date to ensure that the date is correct when the transaction is created.
+* The `Account` class is tested using a mock of the `Transaction` class to ensure that its methods are called correctly in isolation.
+* All tests are passing.
 
 
 

@@ -78,5 +78,14 @@ describe('Transaction', () => {
       expect(transaction.balance).toEqual(-100);
     });
   });
+
+  describe('constructor', () => {
+    it('should set the credit, debit, and balance properties', () => {
+      const transaction = new Transaction(undefined, undefined, 100);
+      expect(transaction.credit).toEqual(0);
+      expect(transaction.debit).toEqual(0);
+      expect(transaction.balance).toEqual(100);
+    });
+  });
 });
 
