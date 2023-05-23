@@ -130,12 +130,12 @@ describe('Account', () => {
 
     it('should print a statement with one transaction when depositing 100', () => {
       account.deposit(100);
-      expect(account.printStatement()).toEqual("date || credit || debit || balance\n31/12/1999 || 100 || 0 || 100");
+      expect(account.printStatement()).toEqual("date || credit || debit || balance\n31/12/1999 || 100 ||  || 100");
     });
 
     it('should print a statement with one transaction when withdrawing 100', () => {
       account.withdraw(100);
-      expect(account.printStatement()).toEqual("date || credit || debit || balance\n31/12/1999 || 0 || 100 || -100");
+      expect(account.printStatement()).toEqual("date || credit || debit || balance\n31/12/1999 ||  || 100 || -100");
     });
 
     it('should print a statement with four transactions when depositing 300 and 200 and withdrawing 100 and 50', () => {
@@ -143,7 +143,7 @@ describe('Account', () => {
       account.deposit(200);
       account.withdraw(100);
       account.withdraw(50);
-      expect(account.printStatement()).toEqual("date || credit || debit || balance\n31/12/1999 || 0 || 50 || 350\n31/12/1999 || 0 || 100 || 400\n31/12/1999 || 200 || 0 || 500\n31/12/1999 || 300 || 0 || 300");
+      expect(account.printStatement()).toEqual("date || credit || debit || balance\n31/12/1999 ||  || 50 || 350\n31/12/1999 ||  || 100 || 400\n31/12/1999 || 200 ||  || 500\n31/12/1999 || 300 ||  || 300");
     });
   });
 });

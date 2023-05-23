@@ -10,14 +10,14 @@ class Account {
   deposit(amount) {
     this.validateAmount(amount);
     this.balance += amount;
-    const transaction = new Transaction(amount, 0, this.balance);
+    const transaction = new Transaction(amount, '', this.balance);
     this.transactions.push(transaction);
   }
 
   withdraw(amount) {
     this.validateAmount(amount);
     this.balance -= amount;
-    const transaction = new Transaction(0, amount, this.balance);
+    const transaction = new Transaction('', amount, this.balance);
     this.transactions.push(transaction);
   }
 
@@ -39,5 +39,12 @@ class Account {
     if (amount > maxTransactionAmount) throw new Error(`Transactions cannot be greater than ${maxTransactionAmount}`);
   }
 }
+
+// const account = new Account(0)
+// account.deposit(1000)
+// account.deposit(2000)
+// account.withdraw(500)
+// console.log(account.printStatement())
+
 
 module.exports = Account;

@@ -1,9 +1,17 @@
 class Transaction {
-  constructor(credit = 0, debit = 0, balance) {
+  constructor(credit, debit, balance) {
     this.date = new Date().toLocaleDateString();
-    this.credit = credit;
-    this.debit = debit;
-    this.balance = balance;
+    if (credit === '') { 
+      this.credit = '\b';
+    } else {
+      this.credit = Number(credit).toFixed(2);
+    }
+    if (debit === '') { 
+      this.debit = '\b';
+    } else {
+      this.debit = Number(debit).toFixed(2);
+    }
+    this.balance = balance.toFixed(2);
   }
 }
 

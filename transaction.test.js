@@ -28,15 +28,15 @@ describe('Transaction', () => {
     });
 
     it('should have a credit', () => {
-      expect(transaction.credit).toEqual(100);
+      expect(transaction.credit).toEqual("100.00");
     });
 
     it('should have a debit', () => {
-      expect(transaction.debit).toEqual(0);
+      expect(transaction.debit).toEqual("0.00");
     });
 
     it('should have a balance', () => {
-      expect(transaction.balance).toEqual(100);
+      expect(transaction.balance).toEqual("100.00");
     });
   });
 
@@ -67,24 +67,24 @@ describe('Transaction', () => {
     });
 
     it('should have a credit', () => {
-      expect(transaction.credit).toEqual(0);
+      expect(transaction.credit).toEqual("0.00");
     });
 
     it('should have a debit', () => {
-      expect(transaction.debit).toEqual(100);
+      expect(transaction.debit).toEqual("100.00");
     });
 
     it('should have a balance', () => {
-      expect(transaction.balance).toEqual(-100);
+      expect(transaction.balance).toEqual("-100.00");
     });
   });
 
   describe('constructor', () => {
     it('should set the credit, debit, and balance properties', () => {
       const transaction = new Transaction(undefined, undefined, 100);
-      expect(transaction.credit).toEqual(0);
-      expect(transaction.debit).toEqual(0);
-      expect(transaction.balance).toEqual(100);
+      expect(transaction.credit).toEqual('NaN');
+      expect(transaction.debit).toEqual('NaN');
+      expect(transaction.balance).toEqual("100.00");
     });
   });
 });

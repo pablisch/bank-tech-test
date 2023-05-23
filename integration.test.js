@@ -59,7 +59,7 @@ describe('intergration', () => {
     it('should print a statement with one transaction when depositing 100', () => {
       const account = new Account(0);
       account.deposit(100);
-      expect(account.printStatement()).toEqual("date || credit || debit || balance\n31/12/1999 || 100 || 0 || 100");
+      expect(account.printStatement()).toEqual("date || credit || debit || balance\n31/12/1999 || 100.00 || \b || 100.00");
     });
 
     it('should print a statement with four transactions when depositing 300, 200, 100 and 50', () => {
@@ -68,13 +68,13 @@ describe('intergration', () => {
       account.deposit(200);
       account.deposit(100);
       account.deposit(50);
-      expect(account.printStatement()).toEqual("date || credit || debit || balance\n31/12/1999 || 50 || 0 || 650\n31/12/1999 || 100 || 0 || 600\n31/12/1999 || 200 || 0 || 500\n31/12/1999 || 300 || 0 || 300");
+      expect(account.printStatement()).toEqual("date || credit || debit || balance\n31/12/1999 || 50.00 || \b || 650.00\n31/12/1999 || 100.00 || \b || 600.00\n31/12/1999 || 200.00 || \b || 500.00\n31/12/1999 || 300.00 || \b || 300.00");
     });
 
     it('should print a statement with one transaction when withdrawing 100', () => {
       const account = new Account(0);
       account.withdraw(100);
-      expect(account.printStatement()).toEqual("date || credit || debit || balance\n31/12/1999 || 0 || 100 || -100");
+      expect(account.printStatement()).toEqual("date || credit || debit || balance\n31/12/1999 || \b || 100.00 || -100.00");
     });
 
     it('should print a statement with four transactions when withdrawing 300, 200, 100 and 50', () => {
@@ -83,7 +83,7 @@ describe('intergration', () => {
       account.withdraw(200);
       account.withdraw(100);
       account.withdraw(50);
-      expect(account.printStatement()).toEqual("date || credit || debit || balance\n31/12/1999 || 0 || 50 || -650\n31/12/1999 || 0 || 100 || -600\n31/12/1999 || 0 || 200 || -500\n31/12/1999 || 0 || 300 || -300");
+      expect(account.printStatement()).toEqual("date || credit || debit || balance\n31/12/1999 || \b || 50.00 || -650.00\n31/12/1999 || \b || 100.00 || -600.00\n31/12/1999 || \b || 200.00 || -500.00\n31/12/1999 || \b || 300.00 || -300.00");
     });
 
     it('should print a statement with four transactions when depositing 1000 and 500 and withdrawing 800 and 300', () => {
@@ -92,7 +92,7 @@ describe('intergration', () => {
       account.deposit(500);
       account.withdraw(800);
       account.withdraw(300);
-      expect(account.printStatement()).toEqual("date || credit || debit || balance\n31/12/1999 || 0 || 300 || 400\n31/12/1999 || 0 || 800 || 700\n31/12/1999 || 500 || 0 || 1500\n31/12/1999 || 1000 || 0 || 1000");
+      expect(account.printStatement()).toEqual("date || credit || debit || balance\n31/12/1999 || \b || 300.00 || 400.00\n31/12/1999 || \b || 800.00 || 700.00\n31/12/1999 || 500.00 || \b || 1500.00\n31/12/1999 || 1000.00 || \b || 1000.00");
     });
   });
 });
