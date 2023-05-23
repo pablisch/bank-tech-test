@@ -172,5 +172,9 @@ I used Jest to test the application.
 All tests pass with 100% coverage:
 ![Bank Tech Test Tests](./images/bank-tech-test-tests.png)
 
+## Example output
 
+With input matching the acceptance criteria input but with the current date: 23rd May 2023, the output is:
+
+![Sample output](./images/bank-tech-test-output.png)
 
