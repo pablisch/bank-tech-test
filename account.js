@@ -20,6 +20,14 @@ class Account {
     this.transactions.push(transaction);
   }
 
+  printStatement() {
+    const statementTransactions = this.transactions.reverse().map(transaction => {
+      return `${transaction.date} || ${transaction.credit} || ${transaction.debit} || ${transaction.balance}`;
+    }
+    ).join("\n");
+    return `date || credit || debit || balance\n${statementTransactions}`;
+  }
+
   // helper method for validating amount
 
   validateAmount(amount) {
