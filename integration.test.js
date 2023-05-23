@@ -77,5 +77,14 @@ describe('intergration', () => {
       account.withdraw(100);
       expect(account.printStatement()).toEqual("date || credit || debit || balance\n31/12/1999 || 0 || 100 || -100");
     });
+
+    it('should print a statement with four transactions when withdrawing 300, 200, 100 and 50', () => {
+      const account = new Account(0);
+      account.withdraw(300);
+      account.withdraw(200);
+      account.withdraw(100);
+      account.withdraw(50);
+      expect(account.printStatement()).toEqual("date || credit || debit || balance\n31/12/1999 || 0 || 50 || -650\n31/12/1999 || 0 || 100 || -600\n31/12/1999 || 0 || 200 || -500\n31/12/1999 || 0 || 300 || -300");
+    });
   });
 });
