@@ -86,5 +86,14 @@ describe('intergration', () => {
       account.withdraw(50);
       expect(account.printStatement()).toEqual("date || credit || debit || balance\n31/12/1999 || 0 || 50 || -650\n31/12/1999 || 0 || 100 || -600\n31/12/1999 || 0 || 200 || -500\n31/12/1999 || 0 || 300 || -300");
     });
+
+    it('should print a statement with four transactions when depositing 1000 and 500 and withdrawing 800 and 300', () => {
+      const account = new Account(0);
+      account.deposit(1000);
+      account.deposit(500);
+      account.withdraw(800);
+      account.withdraw(300);
+      expect(account.printStatement()).toEqual("date || credit || debit || balance\n31/12/1999 || 0 || 300 || 400\n31/12/1999 || 0 || 800 || 700\n31/12/1999 || 500 || 0 || 1500\n31/12/1999 || 1000 || 0 || 1000");
+    });
   });
 });
