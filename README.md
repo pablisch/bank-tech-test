@@ -21,6 +21,7 @@ This is a tech test for a bank account. It is a command line application that al
 2. Run `npm install` to install dependencies
 3. Run `jest` to run tests
 4. Run `jest --coverage` to run tests with coverage
+5. Run `npm run lint` to run ESLint
 
 ## Example usage in Node (step by step)
 
