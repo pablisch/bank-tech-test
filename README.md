@@ -20,6 +20,7 @@ This is a tech test for a bank account. It is a command line application that al
 1. Clone this repository
 2. Run `npm install` to install dependencies
 3. Run `jest` to run tests
+4. Run `jest --coverage` to run tests with coverage
 
 ## Example usage in Node (step by step)
 
@@ -29,8 +30,8 @@ This is a tech test for a bank account. It is a command line application that al
 4. Run `account.deposit(1000)` to deposit £1000
 5. Run `account.deposit(2000)` to deposit £2000
 6. Run `account.withdraw(500)` to withdraw £500
-7. Run `account.printStatement()` to print a statement of your transactions
-8. Run `account.balance` to check your balance
+7. Run `account.printStatement()` to print a statement of the transactions
+8. Run `account.balance` to check the balance
 
 ## Example usage in Node (all at once)
 
@@ -42,6 +43,7 @@ account.deposit(1000)
 account.deposit(2000)
 account.withdraw(500)
 account.printStatement()
+account.balance
 ```
 
 ## Specification
@@ -158,7 +160,10 @@ I used Jest to test the application.
 * The `Transaction` class is tested using a mock date to ensure that the date is correct when the transaction is created.
 * The integration tests also use the same mock date to ensure that the date is correct when the transaction is created.
 * The `Account` class is tested using a mock of the `Transaction` class to ensure that its methods are called correctly in isolation.
-* All tests are passing.
+* All tests are passing with 100% coverage.
+
+All tests pass with 100% coverage:
+![Bank Tech Test Tests](./images/bank-tech-test-tests.png)
 
 
 
