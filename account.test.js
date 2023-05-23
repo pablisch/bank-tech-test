@@ -112,11 +112,10 @@ describe('Account', () => {
   describe('printStatement', () => {
     beforeEach(() => {
       // Mock the Transaction constructor and its instance properties
-      Transaction.mockImplementation((credit, debit, balance) => ({
+      Transaction.mockImplementation((credit, debit) => ({
         date: '31/12/1999',
         credit,
         debit,
-        balance,
       }));
     });
 
@@ -130,12 +129,12 @@ describe('Account', () => {
 
     it('should print a statement with one transaction when depositing 100', () => {
       account.deposit(100);
-      expect(account.printStatement()).toEqual("date || credit || debit || balance\n31/12/1999 || 100 ||  || 100");
+      expect(account.printStatement()).toEqual("date || credit || debit || balance\n31/12/1999 || 100.00 || \b || 100.00");
     });
 
     it('should print a statement with one transaction when withdrawing 100', () => {
       account.withdraw(100);
-      expect(account.printStatement()).toEqual("date || credit || debit || balance\n31/12/1999 ||  || 100 || -100");
+      expect(account.printStatement()).toEqual("date || credit || debit || balance\n31/12/1999 || \b || 100.00 || -100.00");
     });
 
     it('should print a statement with four transactions when depositing 300 and 200 and withdrawing 100 and 50', () => {
@@ -143,7 +142,7 @@ describe('Account', () => {
       account.deposit(200);
       account.withdraw(100);
       account.withdraw(50);
-      expect(account.printStatement()).toEqual("date || credit || debit || balance\n31/12/1999 ||  || 50 || 350\n31/12/1999 ||  || 100 || 400\n31/12/1999 || 200 ||  || 500\n31/12/1999 || 300 ||  || 300");
+      expect(account.printStatement()).toEqual("date || credit || debit || balance\n31/12/1999 || \b || 50.00 || 350.00\n31/12/1999 || \b || 100.00 || 400.00\n31/12/1999 || 200.00 || \b || 500.00\n31/12/1999 || 300.00 || \b || 300.00");
     });
   });
-});
+});.00
