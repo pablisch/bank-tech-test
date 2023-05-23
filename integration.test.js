@@ -1,5 +1,4 @@
 const Account = require('./account');
-const Transaction = require('./transaction');
 
 describe('intergration', () => {
   describe('the transactions array', () => {

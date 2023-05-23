@@ -78,7 +78,5 @@ describe('Transaction', () => {
       expect(transaction.balance).toEqual(-100);
     });
   });
-
-  // ... (other test cases)
 });
 
