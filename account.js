@@ -1,4 +1,5 @@
 const Transaction = require('./transaction');
+const maxTransactionAmount = 500000;
 
 class Account {
   constructor(balance) {
@@ -33,9 +34,9 @@ class Account {
   validateAmount(amount) {
     if (amount < 0) throw new Error('Transactions cannot have a negative amount');
     if (isNaN(amount)) throw new Error('Transactions must be a number');
-    // regex below is for optional decimal place and 0 to 2 decimal places
+    // regex below is for number with an optional decimal place and 0 to 2 decimal places
     if (!/^\d+\.?\d{0,2}$/.test(amount)) throw new Error('Transactions cannot have more than 2 decimal places');
-    if (amount > 500000) throw new Error('Transactions cannot be greater than 500000');
+    if (amount > maxTransactionAmount) throw new Error(`Transactions cannot be greater than ${maxTransactionAmount}`);
   }
 }
 
