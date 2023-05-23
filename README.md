@@ -4,6 +4,17 @@
 
 This is a tech test for a bank account. It is a command line application that allows a user to make deposits, withdrawals and print a statement of their transactions.
 
+## Technologies
+
+* JavaScript
+* Jest
+* Node
+* ESLint
+* Prettier
+* Git
+* GitHub
+* excalidraw
+
 ## Installation
 
 1. Clone this repository
@@ -35,14 +46,14 @@ account.printStatement()
 
 ## Specification
 
-### Requirements
+### Requirements (provided by Makers)
 
 * You should be able to interact with your code via a REPL like IRB or Node.  (You don't need to implement a command line interface that takes input from STDIN.)
 * Deposits, withdrawal.
 * Account statement (date, amount, balance) printing.
 * Data can be kept in memory (it doesn't need to be stored to a database or anything).
 
-### Acceptance criteria
+### Acceptance criteria (provided by Makers)
 
 **Given** a client makes a deposit of 1000 on 10-01-2023  
 **And** a deposit of 2000 on 13-01-2023  
@@ -57,7 +68,7 @@ date || credit || debit || balance
 10/01/2023 || 1000.00 || || 1000.00
 ```
 
-### User Stories
+### User Stories (based on requirements and acceptance criteria)
 
 > As a user, 
 > So that I can store my money safely,
@@ -79,6 +90,7 @@ User interaction with the application:
 Class diagram:
 ![Bank Tech Test Class Diagram](./images/bank-tech-test-mk2.png)
 
+### Classes
 
 * Account(balance - float) - manages transactions and balance
 * Transaction(credit - float, debit - float, balance - float) - stores transaction details with a date
@@ -87,14 +99,14 @@ Class diagram:
 
 #### Account
 
-* new(balance - float)
+* constructor(balance - float)
 * deposit(amount - float) 
 * withdraw(amount - float)
 * printStatement()
 
 #### Transaction
 
-* new(credit - float, debit - float, balance - float, (constructor adds:) date - date)
+* constructor(credit - float, debit - float, balance - float, (constructor adds:) date - date)
 
 ### Edge Cases
 
@@ -103,7 +115,7 @@ Class diagram:
 * User cannot withdraw or deposit a number with more than 2 decimal places
 * User cannot withdraw or deposit a number with more than 500,000
 
-## Example tests
+## Example integration tests
 
 ```
 > account = new Account(0)
@@ -116,4 +128,17 @@ date || credit || debit || balance
 13/01/2023 || 2000.00 || || 3000.00
 10/01/2023 || 1000.00 || || 1000.00
 ```
+
+## Example unit tests
+
+```
+> account = new Account(0)
+> account.deposit(1000)
+> account.deposit(2000)
+> account.withdraw(500)
+> account.balance
+2500
+```
+
+
 
