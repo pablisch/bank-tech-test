@@ -52,6 +52,11 @@ describe('intergration', () => {
       jest.restoreAllMocks();
     });
 
+    it('should print a statement with no transactions when initialised', () => {
+      const account = new Account(0);
+      expect(account.printStatement()).toEqual("date || credit || debit || balance\n");
+    });
+
     it('should print a statement with one transaction when depositing 100', () => {
       const account = new Account(0);
       account.deposit(100);
