@@ -92,6 +92,12 @@ User interaction with the application:
 Class diagram:
 ![Bank Tech Test Class Diagram](./images/bank-tech-test-mk2.png)
 
+### Design decisions
+
+I derived user stories from the provide requirements and acceptance criteria.
+I then used these user stories in conjunction with the requirements and acceptance criteria to create a visualisation of the user interaction with the application which informed the design of the classes and methods disucssed below after the classes and methods section.
+The visualisation and diagramming process led me through several iterations of the design before starting to code, gave me a clear idea of the classes and methods I would need and helped me to identify edge cases.
+
 ### Classes
 
 * Account(balance - float) - manages transactions and balance
