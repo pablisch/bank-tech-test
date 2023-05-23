@@ -3,19 +3,28 @@ const Transaction = require('./transaction.js');
 describe('Transaction', () => {
   describe('initialisation for deposit of 100', () => {
     let transaction;
-    beforeEach(() => {
-      // Create a mock of the Date object.
-      const dateMock = jest.fn(() => new Date('2023-05-22'));
+    beforeAll(() => {
+      const mockDate = new Date('1999-12-31');
+      
+      // Mock the Date object's toLocaleDateString method
+      jest.spyOn(global.Date.prototype, 'toLocaleDateString').mockReturnValue(mockDate.toLocaleDateString());
 
-      // Set the mock's getTime() method to return a specific date.
-      dateMock.mockImplementation(() => new Date('2023-05-22'));
-
-      // Use the mock in your test.
       transaction = new Transaction(100, 0, 100);
     });
+
+    afterAll(() => {
+      // Restore the original implementation of toLocaleDateString after each test
+      jest.restoreAllMocks();
+    });
+    
     
     it('should process the date correctly', () => {
-      expect(transaction.date).toEqual('22/05/2023');
+      expect(transaction.date).toEqual('31/12/1999');
+    });
+
+    // Note that the mock is called twice, once in the test and once in the code
+    it('should have the mock date called twice', () => {
+      expect(global.Date.prototype.toLocaleDateString).toHaveBeenCalledTimes(2);  
     });
 
     it('should have a credit', () => {
@@ -33,19 +42,28 @@ describe('Transaction', () => {
 
   describe('initialisation for withdrawal of 100', () => {
     let transaction;
-    beforeEach(() => {
-      // Create a mock of the Date object.
-      const dateMock = jest.fn(() => new Date('2023-05-22'));
+    beforeAll(() => {
+      const mockDate = new Date('1999-12-31');
+      
+      // Mock the Date object's toLocaleDateString method
+      jest.spyOn(global.Date.prototype, 'toLocaleDateString').mockReturnValue(mockDate.toLocaleDateString());
 
-      // Set the mock's getTime() method to return a specific date.
-      dateMock.mockImplementation(() => new Date('2023-05-22'));
-
-      // Use the mock in your test.
       transaction = new Transaction(0, 100, -100);
     });
+
+    afterAll(() => {
+      // Restore the original implementation of toLocaleDateString after each test
+      jest.restoreAllMocks();
+    });
+    
     
     it('should process the date correctly', () => {
-      expect(transaction.date).toEqual('22/05/2023');
+      expect(transaction.date).toEqual('31/12/1999');
+    });
+
+    // Note that the mock is called twice, once in the test and once in the code
+    it('should have the mock date called twice', () => {
+      expect(global.Date.prototype.toLocaleDateString).toHaveBeenCalledTimes(2);  
     });
 
     it('should have a credit', () => {
@@ -60,4 +78,7 @@ describe('Transaction', () => {
       expect(transaction.balance).toEqual(-100);
     });
   });
+
+  // ... (other test cases)
 });
+
