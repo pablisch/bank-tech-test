@@ -2,31 +2,41 @@ const Transaction = require('./transaction');
 const maxTransactionAmount = 500000;
 
 class Account {
-  constructor(balance) {
-    this.balance = balance;
+  constructor(openingBalance) {
+    this.balance = openingBalance;
     this.transactions = [];
   }
 
   deposit(amount) {
     this.validateAmount(amount);
     this.balance += amount;
-    const transaction = new Transaction(amount, '', this.balance);
+    const transaction = new Transaction(amount, 0);
     this.transactions.push(transaction);
   }
 
   withdraw(amount) {
     this.validateAmount(amount);
     this.balance -= amount;
-    const transaction = new Transaction('', amount, this.balance);
+    const transaction = new Transaction(0, amount);
     this.transactions.push(transaction);
   }
 
   printStatement() {
+    let balance = this.balance;
+
     const statementTransactions = this.transactions.reverse().map(transaction => {
-      return `${transaction.date} || ${transaction.credit} || ${transaction.debit} || ${transaction.balance}`;
+      balance += transaction.debit - transaction.credit;
+      return `${transaction.date} || ${this.formatValue(transaction.credit)} || ${this.formatValue(transaction.debit)} || ${this.formatValue(balance + transaction.credit - transaction.debit)}`;
     }
     ).join("\n");
+    
     return `date || credit || debit || balance\n${statementTransactions}`;
+  }
+
+  // helper method for statement amount formatting
+
+  formatValue(value) {
+    return value === 0 ? '\b' : Number(value).toFixed(2);
   }
 
   // helper method for validating amount
@@ -39,5 +49,11 @@ class Account {
     if (amount > maxTransactionAmount) throw new Error(`Transactions cannot be greater than ${maxTransactionAmount}`);
   }
 }
+
+const account = new Account(0)
+account.deposit(1000)
+account.deposit(2000)
+account.withdraw(500)
+console.log(account.printStatement()  )
 
 module.exports = Account;

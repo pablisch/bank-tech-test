@@ -32,7 +32,6 @@ This is a tech test for a bank account. It is a command line application that al
 5. Run `account.deposit(2000)` to deposit £2000
 6. Run `account.withdraw(500)` to withdraw £500
 7. Run `account.printStatement()` to print a statement of the transactions
-8. Run `account.balance` to check the balance
 
 ## Example usage in Node (all at once)
 
@@ -44,8 +43,9 @@ account.deposit(1000)
 account.deposit(2000)
 account.withdraw(500)
 account.printStatement()
-account.balance
 ```
+
+NOTE: output in Node will show \n for new lines, and \b for backspaces to create the proper formatting required by the acceptance criteria when printed to the console.
 
 ## Specification
 
@@ -90,14 +90,26 @@ date || credit || debit || balance
 User interaction with the application:
 ![Bank Tech Test User Interaction Design](./images/bank-tech-test-user-interaction.png)
 
-Class diagram:
-![Bank Tech Test Class Diagram](./images/bank-tech-test-mk2.png)
+Final class diagram:
+![Final Bank Tech Test Class Diagram](./images/bank-tech-test-mk4.png)
+
+A relatively small chnage in design, the removal of the balance method from the Transaction class, resulted in large changes thorughout the codebase, and a major changes in the test suites where many tests had previously used the balance method in the Transaction class.
+
+Penultimate class diagram:
+![Penultimate Bank Tech Test Class Diagram](./images/bank-tech-test-mk2.png)
 
 ### Design decisions
 
 I derived user stories from the provide requirements and acceptance criteria.
 I then used these user stories in conjunction with the requirements and acceptance criteria to create a visualisation of the user interaction with the application which informed the design of the classes and methods disucssed below after the classes and methods section.
 The visualisation and diagramming process led me through several iterations of the design before starting to code, gave me a clear idea of the classes and methods I would need and helped me to identify edge cases.
+
+After a code review, I was advised to remove the balance method from the Transaction class to avoid duplication of the balance in the Account class and the Transaction class. 
+Having a single instance of the balance in the Account class results in a greater level of encapsulation and reduces the risk of the balance in the Transaction class becoming out of sync with the balance in the Account class.
+It did however mean that I had to refactor the code considerably to calculate the balance in the Account class printStatement method and resulted in a more complex printStatement method with an additional, formatValue method to format the values in the statement.
+It did also force me to change where in my program, the outputs were being formatted, which I think is a good thing as it means that the formatting is not tied to the Transaction class, could be changed easily if required and the values remain 'clean' until the point where they are outputted to the user.
+
+I came very close to implementing the third class, Statement, but decided against it as I felt comfortable with the printStatement method in the Account class that I ended up with and felt that the Statement class would be unnecessary given the scale of the project.
 
 ### Classes
 
@@ -115,7 +127,7 @@ The visualisation and diagramming process led me through several iterations of t
 
 #### Transaction
 
-* constructor(credit - float, debit - float, balance - float, (constructor adds:) date - date)
+* constructor(credit - float, debit - float, (constructor adds:) date - date)
 
 ### Class and method design decisions
 
