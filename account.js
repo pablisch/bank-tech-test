@@ -50,10 +50,10 @@ class Account {
   }
 }
 
-const account = new Account(0)
-account.deposit(1000)
-account.deposit(2000)
-account.withdraw(500)
-console.log(account.printStatement()  )
+// const account = new Account(0)
+// account.deposit(1000)
+// account.deposit(2000)
+// account.withdraw(500)
+// console.log(account.printStatement())
 
 module.exports = Account;
