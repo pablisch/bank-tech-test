@@ -9,7 +9,7 @@ describe('Transaction', () => {
       // Mock the Date object's toLocaleDateString method
       jest.spyOn(global.Date.prototype, 'toLocaleDateString').mockReturnValue(mockDate.toLocaleDateString());
 
-      transaction = new Transaction(100, 0, 100);
+      transaction = new Transaction(100, 0);
     });
 
     afterAll(() => {
@@ -44,7 +44,7 @@ describe('Transaction', () => {
       // Mock the Date object's toLocaleDateString method
       jest.spyOn(global.Date.prototype, 'toLocaleDateString').mockReturnValue(mockDate.toLocaleDateString());
 
-      transaction = new Transaction(0, 100, -100);
+      transaction = new Transaction(0, 100);
     });
 
     afterAll(() => {
@@ -73,9 +73,42 @@ describe('Transaction', () => {
 
   describe('constructor', () => {
     it('should set the credit, debit, and balance properties', () => {
-      const transaction = new Transaction(undefined, undefined, 100);
+      const transaction = new Transaction(undefined, undefined);
+      expect(transaction.date).toEqual(expect.any(String));
       expect(transaction.credit).toEqual(undefined);
       expect(transaction.debit).toEqual(undefined);
+    });
+    
+    it('should set the credit, debit, and balance properties', () => {
+      const transaction = new Transaction(0, 100);
+      expect(transaction.credit).toEqual(0);
+      expect(transaction.debit).toEqual(100);
+    });
+    
+    it('should set the credit, debit, and balance properties', () => {
+      const transaction = new Transaction(100, 0);
+      expect(typeof transaction.date).toBe('string');
+      expect(transaction.credit).toEqual(100);
+      expect(transaction.debit).toEqual(0);
+    });
+  });
+
+  describe('Transaction', () => {
+    it('should initialize with a mocked date', () => {
+      // Define a fixed date for the mock
+      const mockDate = new Date('2000-04-01');
+  
+      // Create a spy to mock the Date object's constructor
+      const dateSpy = jest.spyOn(global, 'Date').mockImplementation(() => mockDate);
+  
+      // Create an instance of the Transaction class
+      const transaction = new Transaction(100, 0);
+  
+      // Assert that the date in the transaction matches the mock date
+      expect(transaction.date).toEqual('01/04/2000'); // Adjust the format as needed
+  
+      // Restore the original implementation of Date
+      dateSpy.mockRestore();
     });
   });
 });
