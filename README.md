@@ -93,7 +93,7 @@ User interaction with the application:
 Final class diagram:
 ![Final Bank Tech Test Class Diagram](./images/bank-tech-test-mk4.png)
 
-A relatively small chnage in design, the removal of the balance method from the Transaction class, resulted in large changes thorughout the codebase, and a major changes in the test suites where many tests had previously used the balance method in the Transaction class.
+A relatively small change in design, the removal of the balance method from the Transaction class, resulted in large changes throughout the codebase, and a major changes in the test suites where many tests had previously used the balance method in the Transaction class.
 
 Penultimate class diagram:
 ![Penultimate Bank Tech Test Class Diagram](./images/bank-tech-test-mk2.png)
